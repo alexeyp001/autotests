@@ -9,116 +9,121 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import unittest
 
-class Test1():
-  def setup_method(self, method):
-    self.driver = webdriver.Chrome()
-    self.vars = {}
-  
-  def teardown_method(self, method):
-    self.driver.quit()
-  
-  def test_1(self):
-    self.driver.get("https://taxcom.ru")
-    self.driver.set_window_size(1920, 1080)
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    self.driver.find_element(By.LINK_TEXT, "Санкт-Петербург").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 90").text == "8 (812) 677 94 90"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
-    self.driver.find_element(By.LINK_TEXT, "Санкт-Петербург").click()
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
+class TestRegions(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+        self.driver.get('http://cluster-test.taxcom.ru')
+
+    def test_1(self):
+        driver = self.driver
+        self.driver.set_window_size(1920, 1080)
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        self.driver.find_element(By.LINK_TEXT, "Санкт-Петербург").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 90").text == "8 (812) 677 94 90"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
+        self.driver.find_element(By.LINK_TEXT, "Санкт-Петербург").click()
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
 
 
-    self.driver.get("https://taxcom.ru")
-    self.driver.set_window_size(1920, 1080)
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    self.driver.find_element(By.LINK_TEXT, "Санкт-Петербург").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 90").text == "8 (812) 677 94 90"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
-    self.driver.find_element(By.LINK_TEXT, "Санкт-Петербург").click()
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
+    def test_2(self):
+        driver = self.driver
+        self.driver.set_window_size(1920, 1080)
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        self.driver.find_element(By.LINK_TEXT, "Санкт-Петербург").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 90").text == "8 (812) 677 94 90"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
+        self.driver.find_element(By.LINK_TEXT, "Санкт-Петербург").click()
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
 
 
-    self.driver.get("https://taxcom.ru")
-    self.driver.set_window_size(1920, 1080)
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    self.driver.find_element(By.LINK_TEXT, "Ленинградская область").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
-    self.driver.find_element(By.LINK_TEXT, "Ленинградская область").click()
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
+    def test_3(self):
+        driver = self.driver
+        self.driver.set_window_size(1920, 1080)
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        self.driver.find_element(By.LINK_TEXT, "Ленинградская область").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (812) 677 94 91").text == "8 (812) 677 94 91"
+        self.driver.find_element(By.LINK_TEXT, "Ленинградская область").click()
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
 
 
-    self.driver.get("https://taxcom.ru")
-    self.driver.set_window_size(1920, 1080)
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    self.driver.find_element(By.LINK_TEXT, "Нижний Новгород").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (831) 233 28 50").text == "8 (831) 233 28 50"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (800) 250 73 45").text == "8 (800) 250 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (831) 233 28 50").text == "8 (831) 233 28 50"
-    self.driver.find_element(By.LINK_TEXT, "Нижний Новгород").click()
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
+    def test_4(self):
+        driver = self.driver
+        self.driver.set_window_size(1920, 1080)
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        self.driver.find_element(By.LINK_TEXT, "Нижний Новгород").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (831) 233 28 50").text == "8 (831) 233 28 50"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (800) 250 73 45").text == "8 (800) 250 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (831) 233 28 50").text == "8 (831) 233 28 50"
+        self.driver.find_element(By.LINK_TEXT, "Нижний Новгород").click()
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
 
 
-    self.driver.get("https://taxcom.ru")
-    self.driver.set_window_size(1920, 1080)
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    self.driver.find_element(By.LINK_TEXT, "Новосибирск").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (383) 362 45 18").text == "8 (383) 362 45 18"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (800) 250 73 45").text == "8 (800) 250 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (383) 362 45 18").text == "8 (383) 362 45 18"
-    self.driver.find_element(By.LINK_TEXT, "Новосибирск").click()
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
+    def test_5(self):
+        driver = self.driver
+        self.driver.set_window_size(1920, 1080)
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        self.driver.find_element(By.LINK_TEXT, "Новосибирск").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (383) 362 45 18").text == "8 (383) 362 45 18"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (800) 250 73 45").text == "8 (800) 250 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (383) 362 45 18").text == "8 (383) 362 45 18"
+        self.driver.find_element(By.LINK_TEXT, "Новосибирск").click()
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
 
 
-    self.driver.get("https://taxcom.ru")
-    self.driver.set_window_size(1920, 1080)
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    self.driver.find_element(By.LINK_TEXT, "Екатеринбург").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (343) 278 59 29").text == "8 (343) 278 59 29"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (343) 278 47 27").text == "8 (343) 278 47 27"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (800) 250 73 45").text == "8 (800) 250 73 45"
-    self.driver.find_element(By.LINK_TEXT, "Екатеринбург").click()
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
+    def test_5(self):
+        driver = self.driver
+        self.driver.set_window_size(1920, 1080)
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        self.driver.find_element(By.LINK_TEXT, "Екатеринбург").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (343) 278 59 29").text == "8 (343) 278 59 29"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (343) 278 47 27").text == "8 (343) 278 47 27"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (800) 250 73 45").text == "8 (800) 250 73 45"
+        self.driver.find_element(By.LINK_TEXT, "Екатеринбург").click()
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
 
+    def test_6(self):
+        driver = self.driver
+        self.driver.set_window_size(1920, 1080)
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        self.driver.find_element(By.LINK_TEXT, "Псков").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (8112) 72 02 30").text == "8 (8112) 72 02 30"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (8112) 72 02 33").text == "8 (8112) 72 02 33"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (800) 250 73 45").text == "8 (800) 250 73 45"
+        self.driver.find_element(By.LINK_TEXT, "Псков").click()
+        self.driver.find_element(By.LINK_TEXT, "Москва").click()
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
+        assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
 
-    self.driver.get("https://taxcom.ru")
-    self.driver.set_window_size(1920, 1080)
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    self.driver.find_element(By.LINK_TEXT, "Псков").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (8112) 72 02 30").text == "8 (8112) 72 02 30"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (8112) 72 02 33").text == "8 (8112) 72 02 33"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (800) 250 73 45").text == "8 (800) 250 73 45"
-    self.driver.find_element(By.LINK_TEXT, "Псков").click()
-    self.driver.find_element(By.LINK_TEXT, "Москва").click()
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 47").text == "8 (495) 730 73 47"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 73 45").text == "8 (495) 730 73 45"
-    assert self.driver.find_element(By.LINK_TEXT, "8 (495) 730 16 19").text == "8 (495) 730 16 19"
+    def tearDown(self):
+      self.driver.quit()
 
-
-
-
+if __name__ == '__main__':
+    unittest.main()
 
 
 

@@ -16,27 +16,19 @@ class tp_search(unittest.TestCase):
         self.driver = webdriver.Chrome()
         self.driver.get('http://cluster-test.taxcom.ru')
 
-    def test_tp_search(self):
+    def test_tp_search1(self):
         driver = self.driver
         self.driver.set_window_size(1920, 1080)
         self.driver.find_element_by_link_text("Техподдержка").click()
-        self.driver.find_element_by_id("srchFrm").click()
-        self.driver.find_element_by_name("").send_keys()
+        input_field = driver.find_element_by_id('srchFrm')
+        input_field.send_keys('Ветис')
+        input_field.send_keys(Keys.ENTER)
 
+        time.sleep(2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        titles = driver.find_elements_by_tag_name('h4')
+        for title in titles:
+            assert "Ветис" in title.text.lower()
 
 
     def tearDown(self):
