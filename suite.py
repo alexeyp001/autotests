@@ -8,6 +8,8 @@ import vetis_new
 import edi_new
 import kontr_new
 import OdinC_new
+import regions
+import tp_search
 
 loader = unittest.TestLoader()
 suite = unittest.TestSuite()
@@ -21,8 +23,10 @@ suite.addTest(loader.loadTestsFromModule(OdinC_new))
 suite.addTest(loader.loadTestsFromModule(vetis_new))
 suite.addTest(loader.loadTestsFromModule(edi_new))
 suite.addTest(loader.loadTestsFromModule(kontr_new))
+suite.addTest(loader.loadTestsFromModule(tp_search))
+suite.addTest(loader.loadTestsFromModule(regions))
 
-runner = unittest.TextTestRunner(verbosity=8)
+runner = unittest.TextTestRunner(verbosity=10)
 result = runner.run(suite)
 
 
