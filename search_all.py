@@ -11,26 +11,20 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 import unittest
 
-class tp_search(unittest.TestCase):
+class search_mini(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
         self.driver.get('http://cluster-test.taxcom.ru')
 
-    def test_tp_search1(self):
+    def test_search_mini(self):
         driver = self.driver
         self.driver.set_window_size(1920, 1080)
 
-        # Переход на страницу
-        self.driver.find_element_by_link_text("Техподдержка").click()
-        search_input = driver.find_element_by_id('srchFrm')
-
-        time.sleep(1)
+        search_input = driver.find_element_by_id('srchFrm-mini')
 
         # Ввод текста
-        search_input.send_keys('Ветис')
+        search_input.send_keys('Цто')
         search_input.submit()
-
-        time.sleep(1)
 
         # Проверка результатов поиска
         search_result = driver.find_elements_by_class_name('search-item')
@@ -39,7 +33,7 @@ class tp_search(unittest.TestCase):
         for result in search_result:
             title_text = result.find_element_by_tag_name('h4').text
             desc_text = result.find_element_by_class_name('search-preview').text
-            assert title_text.lower().find('ветис') != -1 or desc_text.lower().find('ветис') != -1
+            assert title_text.lower().find('цто') != -1 or desc_text.lower().find('цто') != -1
 
 
     def tearDown(self):

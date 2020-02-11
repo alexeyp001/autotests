@@ -35,16 +35,16 @@ class otchetnost(unittest.TestCase):
         WebDriverWait(self.driver, 5000).until(
           expected_conditions.presence_of_element_located((By.XPATH, "//h2[contains(.,\'Заявка принята!\')]")))
         assert self.driver.find_element(By.CSS_SELECTOR, "h2").text == "Заявка принята!"
-        time.sleep(30)
+        time.sleep(15)
 
 
-    def teardown_method(self, method):
+    def teardown_method(self):
         self.driver.quit()
 
 if __name__ == '__main__':
     unittest.main()
 
-mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
+mail = imaplib.IMAP4_SSL('webmail2.taxcom.ru\owa', 993)
 mail.login('alexeyplet00@gmail.com', 'Privet123!')
 mail.list()
 mail.select('Inbox')
